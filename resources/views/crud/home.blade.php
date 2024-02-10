@@ -316,7 +316,7 @@ $(document).ready(function(){
 					</tr>
 				</thead>
 				<tbody>
-                    @foreach ($offer as $offer)
+                    @foreach ($offers as $offer)
 
 					<tr>
                         <td>
@@ -334,7 +334,10 @@ $(document).ready(function(){
                     @endforeach
 				</tbody>
 			</table>
-			<div class="clearfix">
+              <div class="d-flex justify-content-center">
+                  {!! $offers -> links()  !!}
+              </div>
+			{{-- <div class="clearfix">
 				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
 				<ul class="pagination">
 					<li class="page-item disabled"><a href="#">Previous</a></li>
@@ -345,7 +348,7 @@ $(document).ready(function(){
 					<li class="page-item"><a href="#" class="page-link">5</a></li>
 					<li class="page-item"><a href="#" class="page-link">Next</a></li>
 				</ul>
-			</div>
+			</div> --}}
 		</div>
 	</div>
 </div>
@@ -438,5 +441,6 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
+
 </body>
 </html>

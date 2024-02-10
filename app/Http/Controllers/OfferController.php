@@ -16,11 +16,11 @@ class OfferController extends Controller
 {
     use OfferTrait;
     public function show() {
-       $offer =  Offers::select('id',
+       $offers =  Offers::select('id',
        'name_'.LaravelLocalization::getCurrentLocale().' as name' , 'price' ,
        'description_'.LaravelLocalization::getCurrentLocale() .' as details', 'image')
-       ->get(); ;
-        return view('crud.home',compact('offer'));
+       ->paginate(5);
+        return view('crud.home',compact('offers'));
     }
     public function creat(OfferRequest $request){
         //save image
