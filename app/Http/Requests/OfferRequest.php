@@ -22,6 +22,7 @@ class OfferRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'image'=>'required',
             'name_en'=>'required|max:100',
             'name_ar'=>'required|max:100',
             'description_en'=>'required|min:10',
@@ -31,6 +32,7 @@ class OfferRequest extends FormRequest
     }
     public function  messages(){
           return [
+            'image.required'=>__('message.image.required'),
             'name_en.required'=> __('message.Name is required'),
             "name_en.max"=>__('message.The Name must not be greater than 100 characters'),
             "description_en.required"=>__('message.Description is required'),

@@ -22,6 +22,9 @@ return [
 'Cancel'=>'Cancel',
 'Add'=>'Add',
 'Save'=>'Save',
-'Edit Offer'=>'Edit Offer'
+'Edit Offer'=>'Edit Offer',
+'image.required'=>'Image field is required',
+'Add Photo'=>'add Photo',
+'image'=>'image',
 
 ];

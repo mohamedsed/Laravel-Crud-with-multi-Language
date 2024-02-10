@@ -17,7 +17,7 @@
 
 
 
-<div  class="modal fade " style="display: block; opacity: 10; margin-top: 5px">
+<div style="display: block; opacity: 10; margin-top: 5px">
 	<div class="modal-dialog">
 		<div class="modal-content mt-1">
 
@@ -28,12 +28,20 @@
             </div>
             @endif
 
-			<form method="POST" action="{{ route('update.offer',$offer->id)}}">
+			<form method="POST" action="{{ route('update.offer',$offer->id)}}" enctype="multipart/form-data">
                 @csrf
 				<div class="modal-header">
 					<h4 class="modal-title">{{ __('message.Edit Offer') }}</h4>
 
 				</div>
+                <div class="modal-body">
+					<div class="form-group">
+						<label>{{ __('message.Add Photo') }}</label>
+						<input type="file" class="form-control" name="image" >
+                        @error('image')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+					</div>
 				<div class="modal-body">
 					<div class="form-group">
 						<label>{{ __('message.Name English') }}</label>

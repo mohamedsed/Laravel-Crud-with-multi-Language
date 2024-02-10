@@ -23,5 +23,8 @@ return [
 'Add'=>'إضافة',
 'Save'=>'حفظ',
 'Edit Offer'=>'تعديل العرض',
+'image.required'=>'الصورة مطلوبه',
+'Add Photo'=>'أضف صورة',
+'image'=>'الصورة',
 
 ];

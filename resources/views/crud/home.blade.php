@@ -11,6 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 <style>
 body {
 	color: #566787;
@@ -243,24 +244,10 @@ $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 
 	// Select/Deselect checkboxes
-	var checkbox = $('table tbody input[type="checkbox"]');
-	$("#selectAll").click(function(){
-		if(this.checked){
-			checkbox.each(function(){
-				this.checked = true;
-			});
-		} else{
-			checkbox.each(function(){
-				this.checked = false;
-			});
-		}
-	});
-	checkbox.click(function(){
-		if(!this.checked){
-			$("#selectAll").prop("checked", false);
-		}
-	});
+
+
 });
+
 </script>
 </head>
 <body>
@@ -307,16 +294,19 @@ $(document).ready(function(){
                {{  Session::get('message') }}
             </div>
             @endif
+             @if (Session::has('delete'))
+
+            <div class="alert alert-danger" role="alert">
+               {{  Session::get('delete') }}
+            </div>
+            @endif
 
 
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
 						<th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
+							{{ __('message.image') }}
 						</th>
 						<th>{{ __('message.Name') }}</th>
 						<th>{{ __('message.Description') }}</th>
@@ -330,10 +320,7 @@ $(document).ready(function(){
 
 					<tr>
                         <td>
-                            <span class="custom-checkbox">
-                                <input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
+                           <img src="{{ asset("images/offer/$offer->image") }}" alt="" width="80px"/>
 						</td>
 						<td>{{ $offer->name}}</td>
 						<td>{{ $offer->details }}</td>
@@ -341,7 +328,7 @@ $(document).ready(function(){
 
 						<td>
                             <a href=" {{ route('edite.offer',$offer->id) }}" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="{{ route('delete.offer', $offer->id) }}" class="delete" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							<a href="{{ route('delete.offer', $offer->id) }}"   class="delete" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
                     @endforeach
@@ -366,13 +353,20 @@ $(document).ready(function(){
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="POST" action="{{route('creat.offer') }}">
+			<form method="POST" action="{{route('creat.offer') }}" enctype="multipart/form-data">
                 @csrf
 				<div class="modal-header">
 					<h4 class="modal-title">{{ __('message.Add Offers') }}</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
+                    <div class="form-group">
+						<label>{{ __('message.Add Photo') }}</label>
+						<input type="file" name="image" class="form-control" >
+                        @error('image')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+					</div>
 					<div class="form-group">
 						<label>{{ __('message.Name English') }}</label>
 						<input type="text" name="name_en" class="form-control" >
