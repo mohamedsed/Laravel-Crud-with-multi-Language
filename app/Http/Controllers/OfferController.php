@@ -6,10 +6,14 @@ namespace App\Http\Controllers;
 use App\Models\Offers;
 use LaravelLocalization;
 use App\Traits\OfferTrait;
+use App\Exports\OfferExport;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\OfferRequest;
+use Illuminate\Support\Facades\App;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
+    use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class OfferController extends Controller
@@ -62,6 +66,15 @@ class OfferController extends Controller
         return redirect()->back()->with('message','The Offer Has Been Updated');
 
 
+    }
+    public function pdf(){
+           $pdf = App::make('dompdf.wrapper');
+            $pdf->loadView('welcome');
+                return $pdf->download('test.pdf');
+    }
+     public function export()
+    {
+        return Excel::download(new OfferExport, 'offer.xlsx');
     }
 
 

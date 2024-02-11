@@ -29,4 +29,6 @@ Route::group(
     Route::get('delete-offer/{id}' , [OfferController::class , 'deleteOffer'])->name('delete.offer');
     Route::get('edite-offer/{id}' , [OfferController::class , 'editOffer'])->name('edite.offer');
     Route::post('update-offer/{id}' , [OfferController::class , 'updateOffer'])->name('update.offer');
+    Route::get('generate-pdf' , [OfferController::class , 'pdf'])->name('generate.pdf');
+    Route::get('offer/export/', [OfferController::class, 'export'])->name('offers.export');
 });

@@ -283,6 +283,8 @@ $(document).ready(function(){
 					</div>
 					<div class="col-sm-6">
 						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>{{ __('message.Add New Offer') }}</span></a>
+						<a href="{{ route('generate.pdf') }}" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Download PDF</span></a>
+						<a href="{{ route('offers.export') }}" class="btn btn-danger"><i class="material-icons">&#xE147;</i> <span>Download Excel</span></a>
 
 					</div>
 				</div>
